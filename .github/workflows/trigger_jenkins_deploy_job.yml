@@ -1,0 +1,28 @@
+name: Trigger Jenkins Job - IT Assets Deploy
+on:
+  create
+  delete
+  pull_request:
+    types:
+      - closed
+jobs:
+  trigger_jenkins_job:
+    runs-on: self-hosted
+
+    steps:
+      - name: Set BRANCH and ENVIRONMENT variables
+        run: |
+          BRANCH=${GITHUB_REF##*/}
+          REPO=${GITHUB_REPOSITORY##*/}
+
+          if [[ $BRANCH == 'master' ]]; then
+            ENVIRONMENT=live
+          elif [[ $BRANCH == 'develop' ]]; then
+            ENVIRONMENT=testing
+          else
+            ENVIRONMENT=${BRANCH%%-*}
+            BRANCH=${BRANCH#*-}
+          fi
+      - name: Trigger Jenkins Job
+        run: |
+          curl -X POST -L -u hectorf:11b32ea47f75a26ce3f332cc9363351005 "http://jenkins-it.justiapro.com:8080/job/Deployments/job/$REPO/buildWithParameters?token=testingAuthToken&ENVIRONMENT=$ENVIRONMENT&BRANCH=$BRANCH_NAME&TARGET=$REPO"
