@@ -9,7 +9,7 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - name: Set BRANCH and ENVIRONMENT variables
+      - name: Trigger Jenkins Job
         run: |
           BRANCH=${GITHUB_REF##*/}
           REPO=${GITHUB_REPOSITORY##*/}
@@ -26,6 +26,5 @@ jobs:
           echo "BRANCH: $BRANCH"
           echo "ENVIRONMENT: $ENVIRONMENT"
           echo "REPO: $REPO"
-      - name: Trigger Jenkins Job
-        run: |
+          
           curl -X POST -L -u hectorf:11b32ea47f75a26ce3f332cc9363351005 "http://jenkins-it.justiapro.com:8080/job/Deployments/job/$REPO/buildWithParameters?token=testingAuthToken&ENVIRONMENT=$ENVIRONMENT&BRANCH=$BRANCH_NAME&TARGET=$REPO"
