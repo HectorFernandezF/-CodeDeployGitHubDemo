@@ -19,8 +19,7 @@ jobs:
           elif [[ $BRANCH == 'develop' ]]; then
             ENVIRONMENT=testing
           else
-            ENVIRONMENT=${BRANCH%%-*}
-            BRANCH=${BRANCH#*-}
+            ENVIRONMENT=userdev
           fi
 
           echo "BRANCH: $BRANCH"
