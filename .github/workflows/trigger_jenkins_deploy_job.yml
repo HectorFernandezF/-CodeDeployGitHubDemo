@@ -1,7 +1,6 @@
 name: Trigger Jenkins Job - IT Assets Deploy
 on:
-  create
-  delete
+  create: {}
   pull_request:
     types:
       - closed
