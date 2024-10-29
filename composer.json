@@ -1,0 +1,15 @@
+{
+    "name": "ansible/deployment",
+    "type": "project",
+    "description": "Test Ansible Deployment",
+    "keywords": [
+        "framework",
+        "laravel",
+        "justia"
+    ],
+    "license": "MIT",
+    "require": {
+        "guzzlehttp/guzzle": "^6.3",
+        "guzzlehttp/psr7": "1.7.0"
+    }
+}
