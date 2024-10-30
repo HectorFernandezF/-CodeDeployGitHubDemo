@@ -1,3 +1,3 @@
 #!/bin/bash
 
-echo "Installing dependencies..."
+echo "Installing dependencies..." >> /home/live/CodeDeployGitHubDemo/install.log
